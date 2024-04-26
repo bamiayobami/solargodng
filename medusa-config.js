@@ -97,6 +97,12 @@ const projectConfig = {
 /** @type {import('@medusajs/medusa').ConfigModule} */
 module.exports = {
   projectConfig: {
+	  http_compression: {
+      enabled: true,
+      level: 6,
+      memLevel: 8,
+      threshold: 1024,
+    },
     redis_url: REDIS_URL,
     database_url: DATABASE_URL,
     database_type: "postgres",
