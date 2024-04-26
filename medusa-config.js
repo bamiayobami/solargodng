@@ -42,6 +42,17 @@ const plugins = [
       upload_dir: "uploads",
     },
   },
+  {
+    resolve: "@medusajs/admin",
+    /** @type {import('@medusajs/admin').PluginOptions} */
+    options: {
+      // only enable `serve` in development
+      // you may need to add the NODE_ENV variable
+      // manually
+      serve: process.env.NODE_ENV === "development",
+      // other options...
+    },
+  },
 ];
 
 const modules = {
