@@ -46,9 +46,23 @@ const plugins = [
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
-      autoRebuild: true,
+		// only enable `serve` in development
+      // you may need to add the NODE_ENV variable
+      // manually
+      // serve: process.env.NODE_ENV === "development",
+      serve: false,
+      autoRebuild: false,
+      backend: "https://solargodng-56382e8cb316.herokuapp.com",
+      path: "/app",
+      outDir: "build",
       develop: {
-        open: process.env.OPEN_BROWSER !== "false",
+        open: true,
+        port: 7001,
+        host: "example.com",
+        logLevel: "error",
+        stats: "normal",
+        allowedHosts: "auto",
+        webSocketURL: undefined,
       },
     },
   },
@@ -82,7 +96,30 @@ const projectConfig = {
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
 module.exports = {
-  projectConfig,
+  projectConfig: {
+    redis_url: REDIS_URL,
+    database_url: DATABASE_URL,
+    database_type: "postgres",
+	store_cors: process.env.STORE_CORS,
+	admin_cors: process.env.ADMIN_CORS,
+	auth_cors: process.env.AUTH_CORS,
+	cookie_secret: process.env.COOKIE_SECRET ||
+      "cookie_secret",
+    // ...
+	jwt_secret: process.env.JWT_SECRET ||
+      "jwt_secret",
+    // ...
+	database_database: process.env.DATABASE_DATABASE ||
+      "solargodng",
+    // ...
+    database_extra:
+      process.env.NODE_ENV !== "development"
+        ? { ssl: { rejectUnauthorized: false } }
+        : {},
+	redis_url: process.env.REDIS_URL ||
+      "redis://localhost:6379",
+    // ...
+  },
   plugins,
   modules,
 };
