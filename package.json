@@ -20,6 +20,7 @@
     "build": "babel src -d dist --extensions \".ts,.js\"",
     "build:server": "cross-env npm run clean && tsc -p tsconfig.server.json",
 	"build:admin": "medusa-admin build --deployment",
+	"dev:admin": "medusa-admin develop"
     "watch": "cross-env tsc --watch",
     "test": "cross-env jest",
     "seed": "cross-env medusa seed -f ./data/seed.json",
