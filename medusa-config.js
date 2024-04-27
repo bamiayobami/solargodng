@@ -42,16 +42,6 @@ const plugins = [
       upload_dir: "uploads",
     },
   },
-  {
-    resolve: "@medusajs/admin",
-    /** @type {import('@medusajs/admin').PluginOptions} */
-    options: {
-      autoRebuild: true,
-      develop: {
-        open: process.env.OPEN_BROWSER !== "false",
-      },
-    },
-  },
 ];
 
 const modules = {
@@ -82,7 +72,36 @@ const projectConfig = {
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
 module.exports = {
-  projectConfig,
+  projectConfig: {
+	  http_compression: {
+      enabled: true,
+      level: 6,
+      memLevel: 8,
+      threshold: 1024,
+    },
+    redis_url: REDIS_URL,
+    database_url: DATABASE_URL,
+    database_type: "postgres",
+	store_cors: process.env.STORE_CORS,
+	admin_cors: process.env.ADMIN_CORS,
+	auth_cors: process.env.AUTH_CORS,
+	cookie_secret: process.env.COOKIE_SECRET ||
+      "cookie_secret",
+    // ...
+	jwt_secret: process.env.JWT_SECRET ||
+      "jwt_secret",
+    // ...
+	database_database: process.env.DATABASE_DATABASE ||
+      "solargodng",
+    // ...
+    database_extra:
+      process.env.NODE_ENV !== "development"
+        ? { ssl: { rejectUnauthorized: false } }
+        : {},
+	redis_url: process.env.REDIS_URL ||
+      "redis://localhost:6379",
+    // ...
+  },
   plugins,
   modules,
 };
