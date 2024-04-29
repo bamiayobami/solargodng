@@ -43,7 +43,30 @@ const plugins = [
     },
   },
   // ...
+<<<<<<< HEAD
   
+=======
+  {
+    resolve: "@medusajs/admin",
+    /** @type {import('@medusajs/admin').PluginOptions} */
+    options: {
+      serve: false,
+      autoRebuild: true,
+      backend: "https://solargodng-56382e8cb316.herokuapp.com/",
+      path: "/app",
+      outDir: "build",
+      develop: {
+        open: true,
+        port: 7001,
+        host: "https://solargodng-56382e8cb316.herokuapp.com/",
+        logLevel: "error",
+        stats: "normal",
+        allowedHosts: "auto",
+        webSocketURL: undefined,
+      },
+    },
+  },
+>>>>>>> 14e7956bc523409dabb3aa9fa4bd3544b228d510
 
 ];
 
