@@ -43,9 +43,6 @@ const plugins = [
     },
   },
   // ...
-<<<<<<< HEAD
-  
-=======
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
@@ -66,7 +63,6 @@ const plugins = [
       },
     },
   },
->>>>>>> 14e7956bc523409dabb3aa9fa4bd3544b228d510
 
 ];
 
